@@ -1,0 +1,39 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the saveThePrisoner function below.
+def saveThePrisoner(n, m, s):
+    if (m+s-1)%n==0 :
+        p = n
+    #elif m%n==0 and s!=1:
+        #p = (s-1)    
+    #elif m%n!=0 and s==1:    
+        #p = m%n + (s-1)
+    else:
+        p = (m+s-1)%n    
+    return p
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    t = int(input())
+
+    for t_itr in range(t):
+        nms = input().split()
+
+        n = int(nms[0])
+
+        m = int(nms[1])
+
+        s = int(nms[2])
+
+        result = saveThePrisoner(n, m, s)
+
+        fptr.write(str(result) + '\n')
+
+    fptr.close()
