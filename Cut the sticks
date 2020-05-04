@@ -1,0 +1,51 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the cutTheSticks function below.
+def cutTheSticks(arr):
+    b = [None]*n
+    for i in range(n):
+        b[i] = int(arr[i])
+    minn = min(b)
+    maxx = 0
+    cn = [None]*n
+    c1 = []
+    c = 0
+    cc = 0
+    for i in range(n):
+        if len(b)==0:
+            break
+        b = [x - minn for x in b]
+        if i<n:
+            cn[i] = len(b)
+        
+        maxx = min(b)
+        c = b.count(maxx)
+        for j in range(c):
+            b.remove(maxx)
+    #print('ar',b)
+        if len(b)!=0:
+            minn = min(b)
+        cc = cn.count(None)
+    for k in range(cc):
+        cn.remove(None)
+    return(cn)
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = cutTheSticks(arr)
+
+    fptr.write('\n'.join(map(str, result)))
+    fptr.write('\n')
+
+    fptr.close()
