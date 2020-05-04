@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the migratoryBirds function below.
+def migratoryBirds(arr):
+    cn = [None]*5
+    c2 = [None]*5
+    c1 = 0
+    maxx = 0
+
+    for i in range(5):
+        cn[i] = arr.count(i+1)
+    print(cn)
+    maxx = max(cn)
+    minn = 5
+    for i in range(5):
+        if cn[i]>=maxx:
+            maxx = cn[i]
+            c2[i] = i+1
+        else:
+            c2[i]=0
+    c1 = max(cn)
+#print(c1)
+    print(c2)
+    for j in range(5):
+        if(c2[j]!=0 and c2[j]<=minn):
+            minn = c2[j]
+            
+    return minn
+        
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    arr_count = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = migratoryBirds(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
