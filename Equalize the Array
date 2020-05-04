@@ -1,0 +1,50 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the equalizeArray function below.
+def equalizeArray(arr):
+    minn = 0
+    maxx = 0
+    cn = [None]*n
+    c1 = [None]*n
+    ct = p = 0
+
+    for i in range(n):
+        cn[i] = arr.count(arr[i])
+    maxx = max(cn)
+    if maxx == 1:
+        return n-1
+    #print(cn)
+    #print('array',arr)
+    #print('maxx',maxx)
+    else:
+        for j in range(0,n):
+            if arr.count(arr[j])<maxx:
+                c1[j] = arr[j]
+        minn = c1.count(None)
+        for k in range(minn):
+            c1.remove(None)
+        if cn.count(maxx)>maxx:
+            p = cn.count(maxx) - maxx
+
+        ct = len(c1)+p        
+    #print('cnu',c1)
+        return(ct)        
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    result = equalizeArray(arr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
